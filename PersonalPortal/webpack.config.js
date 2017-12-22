@@ -9,6 +9,7 @@ const srcFolder = "./App/"
 
 module.exports = {
     entry: {
+        blog: srcFolder + "blog.jsx"
     },
     devtool: "source-map",
     output: {
@@ -16,7 +17,7 @@ module.exports = {
         path: path.resolve(__dirname, bundleFolder)
     },
     module: {
-        rules: [   //загрузчик для jsx
+        rules: [
             {
                 test: /\.jsx$/,
                 exclude: /(node_modules)/,

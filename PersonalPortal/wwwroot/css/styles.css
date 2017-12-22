@@ -1,0 +1,57 @@
+﻿body {
+}
+
+header {
+    background-color: #539ac7;
+    padding: 10px;
+}
+
+#photoTitle {
+    display: inline-block;
+    background-image: url("../img/myphoto.jpg");
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+}
+
+#title {
+    text-align:right;
+    font-size: 25px;
+    margin-right: 10px;
+    font-family: 'Segoe Script';
+    float: right;
+    color: #FFFFFF;
+}
+
+menu {
+    text-align: right;
+    display: inline-block;
+    margin: 0px;
+    padding-left: 10px;
+    color: #FFFFFF;
+}
+
+    menu ul {
+        margin: 0;
+        padding: 0;
+    }
+
+        menu ul li {
+            font-size: 15px;
+            margin-right: 10px;
+            display: inline;
+            list-style-type: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+            menu ul li a {
+                color: #FFFFFF;
+            }
+
+                menu ul li a:link {
+                    text-decoration: none;
+                }
+
+                menu ul li a:hover {
+                    text-decoration: underline;
+                }

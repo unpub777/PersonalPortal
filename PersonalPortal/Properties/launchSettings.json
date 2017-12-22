@@ -15,15 +15,16 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/values",
+      "launchUrl": "http://localhost:50307/PersonalPortal",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "PersonalPortal": {
       "commandName": "IIS",
+      "workingDirectory": "C:\\work\\PersonalPortal\\PersonalPortal",
       "launchBrowser": true,
-      "launchUrl": "api/post",
+      "launchUrl": "http://localhost/PersonalPortal",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
