@@ -1,10 +1,10 @@
 ﻿using DBRepository.Models;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DBRepository.Interfaces
 {
-    public interface IPostRepository
+	public interface IPostRepository
     {
-        List<Post> GetList();
-    }
+		Task<Page<Post>> GetList(int index, int pageSize);
+	}
 }

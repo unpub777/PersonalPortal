@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\" />
-    <Folder Include="wwwroot\assets\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
@@ -23,6 +22,12 @@
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\assets\blog.js" />
+    <None Include="wwwroot\assets\blog.js.map" />
+    <None Include="wwwroot\assets\common.js" />
+    <None Include="wwwroot\assets\common.js.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DBRepository\DBRepository.csproj" />

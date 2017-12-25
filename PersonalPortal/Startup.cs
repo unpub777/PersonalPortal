@@ -30,7 +30,8 @@ namespace PersonalPortal
 
             services.AddScoped<IPostRepository>(provider => new PostRepository(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-        }
+			services.AddSingleton<IConfiguration>(Configuration);
+		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

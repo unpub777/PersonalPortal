@@ -14,4 +14,4 @@ module.exports = Blog
 ReactDOM.render(
     <Blog />,
     document.getElementById('content')
-);;
+);
