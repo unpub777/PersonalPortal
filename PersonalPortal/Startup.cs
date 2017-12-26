@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 using DBRepository.Interfaces;
 using DBRepository.Repositories;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using DBRepository;
 
 namespace PersonalPortal
 {
@@ -28,7 +30,8 @@ namespace PersonalPortal
         {
             services.AddMvc();
 
-            services.AddScoped<IPostRepository>(provider => new PostRepository(Configuration.GetConnectionString("DefaultConnection")));
+			services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+			services.AddScoped<IBlogRepository>(provider => new BlogRepository(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 			services.AddSingleton<IConfiguration>(Configuration);
 		}
@@ -49,6 +52,12 @@ namespace PersonalPortal
 					name: "DefaultApi",
 					template: "api/{controller}/{action}/{id?}");
 			});
-        }
+
+			using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+			{
+				var context = serviceScope.ServiceProvider.GetService<RepositoryContext>();
+				DbInitializer.Initialize(context);
+			}
+		}
     }
 }

@@ -12,10 +12,10 @@ namespace PersonalPortal.Controllers
     [Route("api/[controller]")]
     public class BlogController : Controller
     {
-        IPostRepository _repository;
+        IBlogRepository _repository;
 		IConfiguration _config;
 
-		public BlogController(IPostRepository repository, IConfiguration configuration)
+		public BlogController(IBlogRepository repository, IConfiguration configuration)
         {
             _repository = repository;
 			_config = configuration;
@@ -26,7 +26,7 @@ namespace PersonalPortal.Controllers
         public async Task<Page<Post>> GetPosts(int pageIndex)
         {
 			var pageSize = _config.GetValue<int>("pageSize");
-			var result = await _repository.GetList(pageIndex, pageSize);
+			var result = await _repository.GetPosts(pageIndex, pageSize);
             return result;
         }
 

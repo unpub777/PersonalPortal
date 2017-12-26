@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DBRepository.Models
 {
@@ -8,5 +9,6 @@ namespace DBRepository.Models
         public string Header { get; set; }
         public string Body { get; set; }
         public DateTime CreatedDate { get; set; }
+		public virtual ICollection<Tag> Tags { get; set; }
     }
 }

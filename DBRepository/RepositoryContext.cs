@@ -7,9 +7,11 @@ namespace DBRepository
     {
         public RepositoryContext(DbContextOptions<RepositoryContext> options) : base(options)
         {
-            Database.EnsureCreated();
+
         }
-        public DbSet<Post> Posts { get; set; }
+
+		public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
-    }
+		public DbSet<Tag> Tags { get; set; }
+	}
 }

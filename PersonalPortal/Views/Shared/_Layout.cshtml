@@ -26,6 +26,11 @@
         </menu>
     </header>
     <main>
+        <script type="text/javascript">
+        constants = {
+            posts: '@Url.RouteUrl("DefaultApi", new { controller = "Blog", action = "posts" })'
+        }
+        </script>
         @RenderBody()
     </main>
     @RenderSection("scripts", required: false)

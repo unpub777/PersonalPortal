@@ -9,7 +9,7 @@ const srcFolder = "./App/"
 
 module.exports = {
     entry: {
-        blog: srcFolder + "blog.jsx"
+        blog: srcFolder + "Blog/blog.jsx"
     },
     devtool: "source-map",
     output: {
