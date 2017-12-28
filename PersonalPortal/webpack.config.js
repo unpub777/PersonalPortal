@@ -9,11 +9,11 @@ const srcFolder = "./App/"
 
 module.exports = {
     entry: {
-        blog: srcFolder + "Blog/blog.jsx"
+        blog: srcFolder + "app.jsx"
     },
     devtool: "source-map",
     output: {
-        filename: "[name].js",
+        filename: "app.js",
         path: path.resolve(__dirname, bundleFolder)
     },
     module: {
@@ -38,6 +38,6 @@ module.exports = {
     },
     plugins: [
         //new webpack.optimize.UglifyJsPlugin({ minimize: true }),
-        new CommonsChunkPlugin("common")
+        //new CommonsChunkPlugin("common")
     ]
 };

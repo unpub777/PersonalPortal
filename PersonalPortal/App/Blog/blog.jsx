@@ -1,25 +1,44 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
+import queryString from 'query-string';
 import Post from './post.jsx';
 import TagsCloud from './tagsCloud.jsx';
 
 class Blog extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { data: { currentPage: 0, totalPages: 0, pageSize: 0, records: [] } };
+        this.state = { data: { currentPage: 0, totalPages: 0, pageSize: 0, records: [] }, tags: [] };
         this.getPosts = this.getPosts.bind(this);
+        this.getTags = this.getTags.bind(this);
     }
 
     componentDidMount() {
-        this.getPosts(0);
+        this.getPosts();
+        this.getTags();
     }
     
-    getPosts(pageIndex) {
-        fetch(constants.posts + "?pageIndex=" + pageIndex)
+    getPosts() {
+        const parsed = queryString.parse(location.search);
+        var params = Object.keys(parsed)
+            .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(parsed[key]))
+            .join("&");
+
+        fetch(constants.posts + params)
             .then((response) => {
                 return response.json()
             }).then((json) => {
                 this.setState({ data: json });
+            }).catch((ex) => {
+                console.log('parsing failed', ex)
+            });
+    }
+
+    getTags() {
+        fetch(constants.tags)
+            .then((response) => {
+                return response.json()
+            }).then((json) => {
+                this.setState({ tags: json });
             }).catch((ex) => {
                 console.log('parsing failed', ex)
             });
@@ -38,7 +57,7 @@ class Blog extends React.Component {
                     {posts}
                 </div>
                 <div id="cloud">
-                    <TagsCloud />
+                    <TagsCloud data={this.state.tags} refresh={this.getPosts} />
                 </div>
             </div>
         );
@@ -46,8 +65,3 @@ class Blog extends React.Component {
 };
 
 module.exports = Blog
-
-ReactDOM.render(
-    <Blog />,
-    document.getElementById('content')
-);

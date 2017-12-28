@@ -6,7 +6,7 @@ namespace DBRepository.Interfaces
 {
 	public interface IBlogRepository
     {
-		Task<Page<Post>> GetPosts(int index, int pageSize);
-		Task<List<Tag>> GetTags();
+		Task<Page<Post>> GetPosts(int index, int pageSize, string tag = null);
+		Task<List<string>> GetAllTagNames();
 	}
 }

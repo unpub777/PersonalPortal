@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 
 class TagCloud extends React.Component {
     constructor(props) {
@@ -7,10 +8,16 @@ class TagCloud extends React.Component {
     }
 
     render() {
+        let tags = this.props.data.map(item => {
+            return (
+                <Link to={"/blog?tag=" + item} key={item}>#{item}</Link>
+            );
+        });
+
         return (
             <div className="tagCloud">
                 <div className="header">Облако тегов</div>
-                <div className="content">Облако тегов</div>
+                <div className="content">{tags}</div>
             </div>
         );
     }

@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using DBRepository.Interfaces;
-using Microsoft.Extensions.Configuration;
+﻿using DBRepository.Interfaces;
 using DBRepository.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PersonalPortal.Controllers
 {
-    [Route("api/[controller]")]
+	[Route("api/[controller]")]
     public class BlogController : Controller
     {
         IBlogRepository _repository;
@@ -23,26 +21,19 @@ namespace PersonalPortal.Controllers
 
 		[Route("posts")]
 		[HttpGet]
-        public async Task<Page<Post>> GetPosts(int pageIndex)
+        public async Task<Page<Post>> GetPosts(int pageIndex, string tag)
         {
 			var pageSize = _config.GetValue<int>("pageSize");
 			var result = await _repository.GetPosts(pageIndex, pageSize);
             return result;
         }
 
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-    }
+		[Route("tags")]
+		[HttpGet]
+		public async Task<List<string>> GetTags()
+		{
+			var result = await _repository.GetAllTagNames();
+			return result;
+		}
+	}
 }

@@ -11,24 +11,30 @@ namespace DBRepository.Repositories
     {
         public BlogRepository(string connectionString) : base(connectionString) { }
 
-        public async Task<Page<Post>> GetPosts(int index, int pageSize)
+        public async Task<Page<Post>> GetPosts(int index, int pageSize, string tag = null)
         {
 			var result = new Page<Post>() { CurrentPage = index, PageSize = pageSize };
 
 			using (var context = new RepositoryContextFactory().CreateDbContext(ConnectionString))
             {
-				result.TotalPages = await context.Posts.CountAsync();
-				result.Records = await context.Posts.OrderByDescending(p => p.CreatedDate).Skip(index * pageSize).Take(pageSize).ToListAsync();
+				var query = context.Posts.AsQueryable();
+				if (!string.IsNullOrWhiteSpace(tag))
+				{
+					query = query.Where(p => p.Tags.Any(t => t.TagName == tag));
+				}
+
+				result.TotalPages = await query.CountAsync();
+				result.Records = await query.Include(p => p.Tags).OrderByDescending(p => p.CreatedDate).Skip(index * pageSize).Take(pageSize).ToListAsync();
             }
 
 			return result;
         }
 
-		public async Task<List<Tag>> GetTags()
+		public async Task<List<string>> GetAllTagNames()
 		{
 			using (var context = new RepositoryContextFactory().CreateDbContext(ConnectionString))
 			{
-				return await context.Tags.ToListAsync();
+				return await context.Tags.Select(t => t.TagName).Distinct().ToListAsync();
 			}
 		}
 	}

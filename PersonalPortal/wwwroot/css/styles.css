@@ -81,11 +81,26 @@ menu {
     width: 100%;
     margin-top: 20px;
 }
-
-    .post .postFooter {
-        text-align: right;
-        padding: 10px;
+    .post .footer {
+        padding-top: 10px;
     }
+
+    .post .tagsBlock {
+        display: inline-block;
+        width: 70%;
+        text-align: left;
+    }
+
+    .post .commentsBlock {
+        display: inline-block;
+        width: 30%;
+        text-align: right;
+    }
+
+.tag {
+    margin-right: 5px;
+    display: inline-block;
+}
 
 .header {
     background-color: #539ac7;
