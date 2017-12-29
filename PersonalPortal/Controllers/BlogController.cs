@@ -24,7 +24,7 @@ namespace PersonalPortal.Controllers
         public async Task<Page<Post>> GetPosts(int pageIndex, string tag)
         {
 			var pageSize = _config.GetValue<int>("pageSize");
-			var result = await _repository.GetPosts(pageIndex, pageSize);
+			var result = await _repository.GetPosts(pageIndex, pageSize, tag);
             return result;
         }
 

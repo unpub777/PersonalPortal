@@ -10,7 +10,7 @@ class TagCloud extends React.Component {
     render() {
         let tags = this.props.data.map(item => {
             return (
-                <Link to={"/blog?tag=" + item} key={item}>#{item}</Link>
+                <Link className="tag" to={"/blog?tag=" + item} key={item}>#{item}</Link>
             );
         });
 

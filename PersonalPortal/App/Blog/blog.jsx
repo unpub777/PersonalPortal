@@ -16,6 +16,10 @@ class Blog extends React.Component {
         this.getPosts();
         this.getTags();
     }
+
+    componentWillReceiveProps(nextProps) {
+        this.getPosts();
+    }
     
     getPosts() {
         const parsed = queryString.parse(location.search);
@@ -23,7 +27,7 @@ class Blog extends React.Component {
             .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(parsed[key]))
             .join("&");
 
-        fetch(constants.posts + params)
+        fetch(constants.posts + "?" + params)
             .then((response) => {
                 return response.json()
             }).then((json) => {

@@ -51,11 +51,13 @@ namespace PersonalPortal
 				routes.MapRoute(
 					name: "DefaultApi",
 					template: "api/{controller}/{action}/{id?}");
+				routes.MapSpaFallbackRoute("spa-fallback", new { controller = "Home", action = "Index" });
 			});
 
 			using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
 			{
 				var context = serviceScope.ServiceProvider.GetService<RepositoryContext>();
+
 				DbInitializer.Initialize(context);
 			}
 		}

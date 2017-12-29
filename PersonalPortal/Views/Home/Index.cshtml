@@ -2,12 +2,12 @@
 
 <html>
 <head>
+    <base href="/" />
     <meta name="viewport" content="width=device-width" />
     <script type="text/javascript">
         constants = {
             posts: '@Url.RouteUrl("DefaultApi", new {controller = "Blog", action = "posts" })',
-            tags: '@Url.RouteUrl("DefaultApi", new {controller = "Blog", action = "tags" })',
-            baseUrl: '@ViewContext.HttpContext.Request.PathBase'
+            tags: '@Url.RouteUrl("DefaultApi", new {controller = "Blog", action = "tags" })'
         }
     </script>
     <link href="~/css/styles.css" rel="stylesheet" media="all">
