@@ -1,8 +1,8 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import queryString from 'query-string';
-import Post from './post.jsx';
-import TagsCloud from './tagsCloud.jsx';
+import Post from './Components/post.jsx';
+import TagsCloud from './Components/tagsCloud.jsx';
 
 class Blog extends React.Component {
     constructor(props) {
@@ -27,7 +27,7 @@ class Blog extends React.Component {
             .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(parsed[key]))
             .join("&");
 
-        fetch(constants.posts + "?" + params)
+        fetch(constants.page + "?" + params)
             .then((response) => {
                 return response.json()
             }).then((json) => {
@@ -51,7 +51,7 @@ class Blog extends React.Component {
     render() {
         let posts = this.state.data.records.map(item => {
             return (
-                <Post key={item.postId} data={item} />
+                <Post key={item.postId} data={item} isFull={false} />
             );
         });
 

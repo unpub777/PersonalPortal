@@ -10,5 +10,6 @@ namespace DBRepository.Models
         public string Body { get; set; }
         public DateTime CreatedDate { get; set; }
 		public virtual ICollection<Tag> Tags { get; set; }
-    }
+		public virtual ICollection<Comment> Comments { get; set; }
+	}
 }

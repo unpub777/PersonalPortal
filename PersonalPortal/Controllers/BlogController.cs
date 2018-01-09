@@ -19,7 +19,7 @@ namespace PersonalPortal.Controllers
 			_config = configuration;
         }
 
-		[Route("posts")]
+		[Route("page")]
 		[HttpGet]
         public async Task<Page<Post>> GetPosts(int pageIndex, string tag)
         {
@@ -27,6 +27,14 @@ namespace PersonalPortal.Controllers
 			var result = await _repository.GetPosts(pageIndex, pageSize, tag);
             return result;
         }
+
+		[Route("post")]
+		[HttpGet]
+		public async Task<Post> GetPost(int postId)
+		{
+			var result = await _repository.GetPost(postId);
+			return result;
+		}
 
 		[Route("tags")]
 		[HttpGet]

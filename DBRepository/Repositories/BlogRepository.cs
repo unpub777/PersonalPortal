@@ -37,5 +37,13 @@ namespace DBRepository.Repositories
 				return await context.Tags.Select(t => t.TagName).Distinct().ToListAsync();
 			}
 		}
+
+		public async Task<Post> GetPost(int postId)
+		{
+			using (var context = new RepositoryContextFactory().CreateDbContext(ConnectionString))
+			{
+				return await context.Posts.Include(p => p.Tags).Include(p => p.Comments).FirstOrDefaultAsync(p => p.PostId == postId);
+			}
+		}
 	}
 }

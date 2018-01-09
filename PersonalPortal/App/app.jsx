@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 import Blog from './Blog/blog.jsx';
 import About from './about.jsx';
+import Comments from './Blog/comments.jsx';
 
 class App extends React.Component {
     render() {
@@ -27,10 +28,11 @@ class App extends React.Component {
                     </menu>
                 </header>
                 <main>
-                        <Switch>
-                            <Route path="/about" component={About} />
-                            <Route path="/blog" component={Blog} />
-                            <Route exact path="/" render={() => (<Redirect to="/blog" />)} />
+                    <Switch>
+                        <Route path="/about" component={About} />
+                        <Route path="/blog/post" component={Comments} />
+                        <Route path="/blog" component={Blog} />
+                        <Route exact path="/" render={() => (<Redirect to="/blog" />)} />
                     </Switch>
                 </main>
             </div>
