@@ -8,6 +8,7 @@ namespace DBRepository.Interfaces
     {
 		Task<Page<Post>> GetPosts(int index, int pageSize, string tag = null);
 		Task<Post> GetPost(int postId);
+		Task AddComment(Comment comment);
 		Task<List<string>> GetAllTagNames();
 	}
 }

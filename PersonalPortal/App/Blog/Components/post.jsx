@@ -16,7 +16,7 @@ class Post extends React.Component {
 
         let commentBlock;
         if (!this.props.isFull) {
-            commentBlock = <Link className="link" to={"/blog/post?postId=" + this.props.data.postId}>Комментарии</Link>
+            commentBlock = <Link className="link" to={"/blog/post?postId=" + this.props.data.postId}>Комментарии {this.props.data.commentCount}</Link>
         }
 
         return (

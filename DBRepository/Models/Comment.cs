@@ -1,4 +1,6 @@
-﻿namespace DBRepository.Models
+﻿using System;
+
+namespace DBRepository.Models
 {
     public class Comment
     {
@@ -6,6 +8,6 @@
         public int PostId { get; set; }
         public string Body { get; set; }
         public string Author { get; set; }
-        public virtual Post Post { get; set; }
+		public DateTime CreateDate { get; set; }
     }
 }

@@ -6,6 +6,14 @@ header {
     padding: 10px;
 }
 
+input {
+    border: 1px solid #539ac7;
+}
+
+textarea {
+    border: 1px solid #539ac7;
+}
+
 #photoTitle {
     display: inline-block;
     background-image: url("../img/myphoto.jpg");
@@ -102,6 +110,25 @@ menu {
     display: inline-block;
 }
 
+.commentsList {
+    width: 70%;
+    min-width: 300px;
+}
+
+    .commentsList .header {
+        background-color: #539ac7;
+        color: #000000;
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .commentsList .content {
+        background-color: #ffffff;
+        padding: 10px;
+        border: 1px solid #539ac7;
+        font-size: 17px;
+    }
+
 .header {
     background-color: #539ac7;
     color: #FFFFFF;
@@ -129,4 +156,43 @@ menu {
 
 .tagCloud {
     margin-top: 20px;
+}
+
+.row {
+    margin-bottom: 10px;
+}
+
+.writeCommentBlock .commentInput {
+    width: 70%;
+    min-width: 300px;
+}
+
+.commentArea {
+    width: 100%;
+}
+
+.actionBlock {
+    text-align: right;
+}
+
+.itemCount {
+    color: #539ac7;
+}
+
+.leftFloat {
+    display: inline-block;
+    float:left;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.rightFloat {
+    display: inline-block;
+    float:right;
+}
+
+.commentLayout {
+    margin-bottom: 10px;
 }

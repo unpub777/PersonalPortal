@@ -24,7 +24,7 @@ namespace DBRepository.Repositories
 				}
 
 				result.TotalPages = await query.CountAsync();
-				result.Records = await query.Include(p => p.Tags).OrderByDescending(p => p.CreatedDate).Skip(index * pageSize).Take(pageSize).ToListAsync();
+				result.Records = await query.Include(p => p.Tags).Include(p => p.Comments).OrderByDescending(p => p.CreatedDate).Skip(index * pageSize).Take(pageSize).ToListAsync();
             }
 
 			return result;
@@ -43,6 +43,15 @@ namespace DBRepository.Repositories
 			using (var context = new RepositoryContextFactory().CreateDbContext(ConnectionString))
 			{
 				return await context.Posts.Include(p => p.Tags).Include(p => p.Comments).FirstOrDefaultAsync(p => p.PostId == postId);
+			}
+		}
+
+		public async Task AddComment(Comment comment)
+		{
+			using (var context = new RepositoryContextFactory().CreateDbContext(ConnectionString))
+			{
+				context.Comments.Add(comment);
+				await context.SaveChangesAsync();
 			}
 		}
 	}

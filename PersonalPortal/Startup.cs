@@ -8,6 +8,7 @@ using DBRepository.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using DBRepository;
+using AutoMapper;
 
 namespace PersonalPortal
 {
@@ -29,6 +30,7 @@ namespace PersonalPortal
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+			services.AddAutoMapper();
 
 			services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 			services.AddScoped<IBlogRepository>(provider => new BlogRepository(Configuration.GetConnectionString("DefaultConnection")));

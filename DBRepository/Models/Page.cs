@@ -13,5 +13,10 @@ namespace DBRepository.Models
 		{
 			Records = new List<T>();
 		}
+
+		public Page(IEnumerable<T> records)
+		{
+			Records = new List<T>(records);
+		}
 	}
 }
