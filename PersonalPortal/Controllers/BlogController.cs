@@ -1,10 +1,7 @@
-﻿using AutoMapper;
-using DBRepository.Interfaces;
-using DBRepository.Models;
+﻿using DBRepository.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+using PersonalPortal.Services.Interfaces;
 using PersonalPortal.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,49 +10,39 @@ namespace PersonalPortal.Controllers
 	[Route("api/[controller]")]
     public class BlogController : Controller
     {
-        IBlogRepository _repository;
-		IConfiguration _config;
-		IMapper _mapper;
+		IBlogService _blogService;
 
-		public BlogController(IBlogRepository repository, IConfiguration configuration, IMapper mapper)
+		public BlogController(IBlogService blogService)
         {
-            _repository = repository;
-			_config = configuration;
-			_mapper = mapper;
-        }
+			_blogService = blogService;
+		}
 
 		[Route("page")]
 		[HttpGet]
         public async Task<Page<PostLiteViewModel>> GetPosts(int pageIndex, string tag)
         {
-			var pageSize = _config.GetValue<int>("pageSize");
-			var page = await _repository.GetPosts(pageIndex, pageSize, tag);
-			var result = _mapper.ToMappedPage<Post, PostLiteViewModel>(page);
-            return result;
+			return await _blogService.GetPosts(pageIndex, tag);
         }
 
 		[Route("post")]
 		[HttpGet]
 		public async Task<Post> GetPost(int postId)
 		{
-			var result = await _repository.GetPost(postId);
-			return result;
+			return await _blogService.GetPost(postId);
 		}
 
 		[Route("comment")]
 		[HttpPost]
 		public async Task AddComment([FromBody] AddCommentRequest request)
 		{
-			var comment = _mapper.Map<AddCommentRequest, Comment>(request);
-			await _repository.AddComment(comment);
+			await _blogService.AddComment(request);
 		}
 
 		[Route("tags")]
 		[HttpGet]
 		public async Task<List<string>> GetTags()
 		{
-			var result = await _repository.GetAllTagNames();
-			return result;
+			return await _blogService.GetTags();
 		}
 	}
 }

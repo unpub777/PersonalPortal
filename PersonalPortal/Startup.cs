@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using DBRepository;
 using AutoMapper;
+using PersonalPortal.Services.Interfaces;
+using PersonalPortal.Services.Implementation;
 
 namespace PersonalPortal
 {
@@ -34,8 +36,9 @@ namespace PersonalPortal
 
 			services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 			services.AddScoped<IBlogRepository>(provider => new BlogRepository(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 			services.AddSingleton<IConfiguration>(Configuration);
+			services.AddScoped<IBlogService, BlogService>();
 		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

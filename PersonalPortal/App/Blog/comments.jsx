@@ -55,7 +55,7 @@ class Comments extends React.Component {
             return (
                 <div className="commentLayout" key={item.commentId}>
                     <div className="header">
-                        <div className="inline-block">{item.author}</div>
+                        <div className="inline-block"><span className="bold">{item.author}</span></div>
                         <div className="rightFloat">{item.createDate}</div>
                     </div>
                     <div className="content">

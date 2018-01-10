@@ -196,3 +196,7 @@ menu {
 .commentLayout {
     margin-bottom: 10px;
 }
+
+.bold {
+    font-weight: bold;
+}
