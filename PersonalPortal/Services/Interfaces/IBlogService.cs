@@ -10,6 +10,7 @@ namespace PersonalPortal.Services.Interfaces
 		Task<Page<PostLiteViewModel>> GetPosts(int pageIndex, string tag);
 		Task<Post> GetPost(int postId);
 		Task AddComment(AddCommentRequest request);
+		Task AddPost(AddPostRequest request);
 		Task<List<string>> GetTags();
 	}
 }

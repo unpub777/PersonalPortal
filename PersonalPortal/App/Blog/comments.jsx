@@ -2,6 +2,7 @@
 import ReactDOM from 'react-dom';
 import queryString from 'query-string';
 import Post from './Components/post.jsx';
+import "isomorphic-fetch";
 
 class Comments extends React.Component {
     constructor(props) {

@@ -28,6 +28,12 @@ namespace PersonalPortal.Services.Implementation
 			await _repository.AddComment(comment);
 		}
 
+		public async Task AddPost(AddPostRequest request)
+		{
+			var post = _mapper.Map<AddPostRequest, Post>(request);
+			await _repository.AddPost(post);
+		}
+
 		public async Task<Post> GetPost(int postId)
 		{
 			var result = await _repository.GetPost(postId);

@@ -13,6 +13,7 @@ class App extends React.Component {
                 <header>
                     <div id="photoTitle"></div>
                     <div id="title">Sergey Tseplukhin</div>
+                    <div className="newPost"><Link to="/blog/new">Новая запись</Link></div>
                     <menu>
                         <ul>
                             <li>

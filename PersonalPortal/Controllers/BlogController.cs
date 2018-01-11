@@ -38,6 +38,13 @@ namespace PersonalPortal.Controllers
 			await _blogService.AddComment(request);
 		}
 
+		[Route("post")]
+		[HttpPost]
+		public async Task AddPost([FromBody] AddPostRequest request)
+		{
+			await _blogService.AddPost(request);
+		}
+
 		[Route("tags")]
 		[HttpGet]
 		public async Task<List<string>> GetTags()

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import queryString from 'query-string';
 import Post from './Components/post.jsx';
 import TagsCloud from './Components/tagsCloud.jsx';
+import "isomorphic-fetch";
 
 class Blog extends React.Component {
     constructor(props) {
