@@ -26,7 +26,7 @@ header a:hover {
     text-decoration: underline;
 }
 
-header .newPost {
+header .newPostButton {
     position: absolute;
     top: 85px;
     right: 20px;
@@ -220,3 +220,45 @@ menu {
 .bold {
     font-weight: bold;
 }
+
+.newPost {
+    width: 97%;
+}
+
+    .newPost .postHeader {
+        width: 100%;
+    }
+
+    .newPost .postSubmit {
+        font-size: 15px;
+    }
+
+    .newPost .postTags {
+        width: 100%;
+    }
+
+ul.pagingNumber {
+    margin: 0;
+    padding: 0;
+    max-width: 1000px;
+}
+
+    ul.pagingNumber li {
+        font-size: 12px;
+        margin-right: 3px;
+        display: inline-block;
+        list-style-type: none;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+        ul.pagingNumber li a {
+            cursor: pointer;
+        }
+
+            ul.pagingNumber li a:link {
+                text-decoration: none;
+            }
+
+            ul.pagingNumber li a:hover {
+                text-decoration: underline;
+            }

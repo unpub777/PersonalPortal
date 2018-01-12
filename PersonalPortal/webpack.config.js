@@ -1,7 +1,6 @@
 ﻿'use strict';
 
 let webpack = require('webpack');
-var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 let path = require('path');
 
 const bundleFolder = "./wwwroot/assets/";
@@ -38,6 +37,5 @@ module.exports = {
     },
     plugins: [
         //new webpack.optimize.UglifyJsPlugin({ minimize: true }),
-        //new CommonsChunkPlugin("common")
     ]
 };

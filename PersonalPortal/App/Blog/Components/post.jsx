@@ -21,7 +21,7 @@ class Post extends React.Component {
 
         return (
             <div className="post">
-                <div className="header"><a href="#">{this.props.data.header}</a></div>
+                <div className="header"><Link className="link" to={"/blog/post?postId=" + this.props.data.postId}>{this.props.data.header}</Link></div>
                 <div className="content">
                     <div>
                         {this.props.data.body}

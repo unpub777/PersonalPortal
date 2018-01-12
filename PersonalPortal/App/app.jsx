@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-ro
 import Blog from './Blog/blog.jsx';
 import About from './about.jsx';
 import Comments from './Blog/comments.jsx';
+import NewPost from './Blog/newPost.jsx';
 
 class App extends React.Component {
     render() {
@@ -13,7 +14,7 @@ class App extends React.Component {
                 <header>
                     <div id="photoTitle"></div>
                     <div id="title">Sergey Tseplukhin</div>
-                    <div className="newPost"><Link to="/blog/new">Новая запись</Link></div>
+                    <div className="newPostButton"><Link to="/blog/new">Новая запись</Link></div>
                     <menu>
                         <ul>
                             <li>
@@ -31,6 +32,7 @@ class App extends React.Component {
                 <main>
                     <Switch>
                         <Route path="/about" component={About} />
+                        <Route path="/blog/new" component={NewPost} />
                         <Route path="/blog/post" component={Comments} />
                         <Route path="/blog" component={Blog} />
                         <Route exact path="/" render={() => (<Redirect to="/blog" />)} />
