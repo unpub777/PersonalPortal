@@ -5,7 +5,7 @@ import "isomorphic-fetch";
 class NewPost extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { tags: null, body: null, header: null };
+        this.state = { tags: '', body: '', header: '' };
         this.onAdd = this.onAdd.bind(this);
     }
 

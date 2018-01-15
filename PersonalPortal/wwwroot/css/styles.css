@@ -26,12 +26,13 @@ header a:hover {
     text-decoration: underline;
 }
 
-header .newPostButton {
+header .rightMenu {
     position: absolute;
     top: 85px;
     right: 20px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
+    text-align: right;
 }
 
 #photoTitle {
@@ -128,6 +129,7 @@ menu {
 .link {
     margin-right: 5px;
     display: inline-block;
+    cursor: pointer;
 }
 
 .commentsList {
@@ -262,3 +264,19 @@ ul.pagingNumber {
             ul.pagingNumber li a:hover {
                 text-decoration: underline;
             }
+
+.loginForm {
+    border: 1px solid #539ac7;
+    background-color: #FFFFFF;
+    z-index: 9999;
+    width: 300px;
+    height: 120px;
+    text-align: left;
+    opacity: 0.85;
+    filter: alpha(Opacity=85);
+    padding: 10px;
+}
+
+    .loginForm input {
+        width: 98%;
+    }
