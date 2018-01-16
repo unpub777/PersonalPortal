@@ -1,8 +1,9 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import "isomorphic-fetch";
+import AuthHelper from '../Utils/authHelper'
 
-class NewPost extends React.Component {
+export default class NewPost extends React.Component {
     constructor(props) {
         super(props);
         this.state = { tags: '', body: '', header: '' };
@@ -10,24 +11,31 @@ class NewPost extends React.Component {
     }
 
     onAdd() {
-        if (this.state.header && this.state.body) {
+        let token = AuthHelper.getToken();
+        if (this.state.header && this.state.body && token) {
             fetch(constants.post, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
                 },
                 body: JSON.stringify({ header: this.state.header, body: this.state.body, tags: this.state.tags ? this.state.tags.split(',').map((tag) => tag.trim()) : null })
             }).then((response) => {
                 if (response.ok) {
                     this.props.history.push('/');
                 } else {
-                    alert('Ошибка добавления комментария');
+                    alert('Ошибка добавления записи');
                 }
             }).catch((ex) => {
                 console.log('parsing failed', ex)
             });
         } else {
-            alert('Необходимо заполнить заголовок и тело новой записи');
+            if (!token) {
+                alert('Необходимо залогиниться');
+            }
+            else if (!this.state.header || !this.state.body) {
+                alert('Необходимо заполнить заголовок и тело новой записи');
+            }
         }
     }
 
@@ -55,5 +63,3 @@ class NewPost extends React.Component {
         );
     }
 };
-
-module.exports = NewPost;

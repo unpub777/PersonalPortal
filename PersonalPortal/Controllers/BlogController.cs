@@ -1,4 +1,5 @@
 ﻿using DBRepository.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PersonalPortal.Services.Interfaces;
 using PersonalPortal.ViewModels;
@@ -38,6 +39,7 @@ namespace PersonalPortal.Controllers
 			await _blogService.AddComment(request);
 		}
 
+		[Authorize]
 		[Route("post")]
 		[HttpPost]
 		public async Task AddPost([FromBody] AddPostRequest request)

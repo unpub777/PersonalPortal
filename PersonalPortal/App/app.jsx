@@ -10,44 +10,9 @@ import LoginForm from './Blog/Components/loginForm.jsx';
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isShowLoginForm: false };
-        this.login = this.login.bind(this);
-    }
-
-    login(userName, password) {
-        if (userName && password) {
-            var loginData = {
-                username: userName,
-                password: password
-            };
-
-            const searchParams = Object.keys(loginData).map((key) => {
-                return encodeURIComponent(key) + '=' + encodeURIComponent(loginData[key]);
-            }).join('&');
-
-            fetch(constants.token, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                },
-                body: searchParams
-            }).then((response) => {
-                if (response.ok) {
-                    this.props.history.push('/');
-                } else {
-                    alert('Ошибка авторизации');
-                }
-            }).catch((ex) => {
-                console.log('parsing failed', ex)
-            });
-        } else {
-            alert('Необходимо ввести имя пользователя и пароль');
-        }
     }
 
     render() {
-        var loginForm = this.state.isShowLoginForm ? <LoginForm login={this.login} /> : '';
-
         return (
             <Router basename="PersonalPortal">
             <div>
@@ -55,9 +20,8 @@ class App extends React.Component {
                     <div id="photoTitle"></div>
                     <div id="title">Sergey Tseplukhin</div>
                     <div className="rightMenu">
-                        <Link className="link" to="/blog/new">Новая запись</Link>
-                       <a className="link" onClick={() => { var tmp = this.state.isShowLoginForm; this.setState({ isShowLoginForm: !tmp }); }}>Логин</a>
-                       {loginForm}
+                        <Link className="link marginRight30" to="/blog/new">Новая запись</Link>
+                        <LoginForm />
                     </div>
                     <menu>
                         <ul>
@@ -87,8 +51,6 @@ class App extends React.Component {
         );
     }
 };
-
-module.exports = App
 
 ReactDOM.render(
     <App />,

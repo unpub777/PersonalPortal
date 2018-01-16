@@ -2,7 +2,7 @@
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
-class TagCloud extends React.Component {
+export default class TagCloud extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -22,5 +22,3 @@ class TagCloud extends React.Component {
         );
     }
 };
-
-module.exports = TagCloud

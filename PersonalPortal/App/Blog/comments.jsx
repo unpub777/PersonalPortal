@@ -4,7 +4,7 @@ import queryString from 'query-string';
 import Post from './Components/post.jsx';
 import "isomorphic-fetch";
 
-class Comments extends React.Component {
+export default class Comments extends React.Component {
     constructor(props) {
         super(props);
         this.state = { post: { tags: [], comments: [] }, newComment: '', newCommentAuthorName: '' };
@@ -87,5 +87,3 @@ class Comments extends React.Component {
         );
     }
 };
-
-module.exports = Comments;

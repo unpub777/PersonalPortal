@@ -2,7 +2,7 @@
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
-class Post extends React.Component {
+export default class Post extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -35,5 +35,3 @@ class Post extends React.Component {
         );
     }
 };
-
-module.exports = Post

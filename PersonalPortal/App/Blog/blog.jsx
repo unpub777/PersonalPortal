@@ -6,7 +6,7 @@ import Post from './Components/post.jsx';
 import TagsCloud from './Components/tagsCloud.jsx';
 import "isomorphic-fetch";
 
-class Blog extends React.Component {
+export default class Blog extends React.Component {
     constructor(props) {
         super(props);
         this.state = { data: { currentPage: 0, totalPages: 0, pageSize: 0, records: [] }, tags: [] };
@@ -95,5 +95,3 @@ class Blog extends React.Component {
         );
     }
 };
-
-module.exports = Blog

@@ -280,3 +280,12 @@ ul.pagingNumber {
     .loginForm input {
         width: 98%;
     }
+
+.nameLabel {
+    color:#FFFFFF;
+    font-size: 19px;
+}
+
+.marginRight30 {
+    margin-right: 30px;
+}
