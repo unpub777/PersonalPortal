@@ -1,0 +1,5 @@
+﻿export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS'
+export const ADD_POST_ERROR = 'ADD_POST_ERROR'
+export const CHANGE_HEADER = 'CHANGE_HEADER'
+export const CHANGE_BODY = 'CHANGE_BODY'
+export const CHANGE_TAGS = 'CHANGE_TAGS'

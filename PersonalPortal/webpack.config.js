@@ -7,12 +7,13 @@ const bundleFolder = "./wwwroot/assets/";
 const srcFolder = "./App/"
 
 module.exports = {
-    entry: {
-        blog: srcFolder + "app.jsx"
-    },
+    entry: [
+        'babel-polyfill',
+        srcFolder + "index.jsx" 
+    ], 
     devtool: "source-map",
     output: {
-        filename: "app.js",
+        filename: "bundle.js",
         path: path.resolve(__dirname, bundleFolder)
     },
     module: {
@@ -20,10 +21,7 @@ module.exports = {
             {
                 test: /\.jsx$/,
                 exclude: /(node_modules)/,
-                loader: "babel-loader",
-                options: {
-                    presets: ["env", "react"]
-                }
+                loader: "babel-loader"
             },
             {
                 test: /\.css$/,

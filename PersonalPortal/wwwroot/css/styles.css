@@ -37,7 +37,7 @@ header .rightMenu {
 
 #photoTitle {
     display: inline-block;
-    background-image: url("../img/myphoto.jpg");
+    background-image: url("../img/user-icon.png");
     width: 80px;
     height: 80px;
     background-size: cover;
@@ -73,7 +73,7 @@ fieldset {
     border: 1px solid #539ac7;
 }
 
-menu {
+.menu {
     text-align: right;
     display: inline-block;
     margin: 0px;
@@ -81,12 +81,12 @@ menu {
     color: #FFFFFF;
 }
 
-    menu ul {
+    .menu ul {
         margin: 0;
         padding: 0;
     }
 
-        menu ul li {
+        .menu ul li {
             font-size: 15px;
             margin-right: 10px;
             display: inline;
@@ -94,15 +94,15 @@ menu {
             font-family: Arial, Helvetica, sans-serif;
         }
 
-            menu ul li a {
+            .menu ul li a {
                 color: #FFFFFF;
             }
 
-                menu ul li a:link {
+                .menu ul li a:link {
                     text-decoration: none;
                 }
 
-                menu ul li a:hover {
+                .menu ul li a:hover {
                     text-decoration: underline;
                 }
 

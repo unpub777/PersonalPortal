@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
 export default class Post extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         let tags = this.props.data.tags.map(item => {
