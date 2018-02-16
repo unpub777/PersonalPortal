@@ -1,6 +1,6 @@
 ﻿using PersonalPortal.Services.Interfaces;
 using System.Threading.Tasks;
-using DBRepository.Models;
+using Models;
 using DBRepository.Interfaces;
 
 namespace PersonalPortal.Services.Implementation

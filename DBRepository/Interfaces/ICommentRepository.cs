@@ -1,4 +1,4 @@
-﻿using DBRepository.Models;
+﻿using Models;
 using System.Collections.Generic;
 
 namespace DBRepository.Interfaces

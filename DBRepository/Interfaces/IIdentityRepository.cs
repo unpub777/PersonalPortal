@@ -1,4 +1,4 @@
-﻿using DBRepository.Models;
+﻿using Models;
 using System.Threading.Tasks;
 
 namespace DBRepository.Interfaces

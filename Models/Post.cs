@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DBRepository.Models
+namespace Models
 {
     public class Post
     {

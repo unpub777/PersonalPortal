@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using DBRepository.Models;
+using Models;
 using PersonalPortal.Services.Interfaces;
 using PersonalPortal.ViewModels;
 using DBRepository.Interfaces;

@@ -1,4 +1,4 @@
-﻿namespace DBRepository.Models
+﻿namespace Models
 {
 	public class Tag
 	{

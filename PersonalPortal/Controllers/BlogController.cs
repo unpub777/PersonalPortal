@@ -1,4 +1,4 @@
-﻿using DBRepository.Models;
+﻿using Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PersonalPortal.Services.Interfaces;

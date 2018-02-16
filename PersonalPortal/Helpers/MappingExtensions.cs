@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DBRepository.Models;
+using Models;
 using System.Collections.Generic;
 
 namespace PersonalPortal

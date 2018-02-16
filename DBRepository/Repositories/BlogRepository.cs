@@ -1,5 +1,5 @@
 ﻿using DBRepository.Interfaces;
-using DBRepository.Models;
+using Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;

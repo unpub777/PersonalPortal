@@ -1,4 +1,4 @@
-﻿using DBRepository.Models;
+﻿using Models;
 using PersonalPortal.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;

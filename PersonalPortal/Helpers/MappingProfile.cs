@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DBRepository.Models;
+using Models;
 using PersonalPortal.ViewModels;
 using System;
 

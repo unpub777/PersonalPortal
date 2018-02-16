@@ -1,4 +1,4 @@
-﻿using DBRepository.Models;
+﻿using Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DBRepository
@@ -14,5 +14,11 @@ namespace DBRepository
         public DbSet<Comment> Comments { get; set; }
 		public DbSet<Tag> Tags { get; set; }
 		public DbSet<User> Users { get; set; }
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			modelBuilder.Entity<User>().Property(u => u.Login).IsRequired();
+			modelBuilder.Entity<User>().Property(u => u.Password).IsRequired();
+		}
 	}
 }
