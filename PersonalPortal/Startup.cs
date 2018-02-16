@@ -62,9 +62,10 @@ namespace PersonalPortal
 			services.AddMvc();
 			services.AddAutoMapper();
 
-			services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-			services.AddScoped<IBlogRepository>(provider => new BlogRepository(Configuration.GetConnectionString("DefaultConnection")));
-			services.AddScoped<IIdentityRepository>(provider => new IdentityRepository(Configuration.GetConnectionString("DefaultConnection")));
+			//services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+			services.AddScoped<IRepositoryContextFactory, RepositoryContextFactory>();
+			services.AddScoped<IBlogRepository>(provider => new BlogRepository(Configuration.GetConnectionString("DefaultConnection"), provider.GetService<IRepositoryContextFactory>()));
+			services.AddScoped<IIdentityRepository>(provider => new IdentityRepository(Configuration.GetConnectionString("DefaultConnection"), provider.GetService<IRepositoryContextFactory>()));
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 			services.AddSingleton<IConfiguration>(Configuration);
 			services.AddScoped<IBlogService, BlogService>();
@@ -90,12 +91,8 @@ namespace PersonalPortal
 				routes.MapSpaFallbackRoute("spa-fallback", new { controller = "Home", action = "Index" });
 			});
 
-			using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-			{
-				var context = serviceScope.ServiceProvider.GetService<RepositoryContext>();
-
-				DbInitializer.Initialize(context);
-			}
+			var factory = app.ApplicationServices.GetService<IRepositoryContextFactory>();
+			DbInitializer.Initialize(factory.CreateDbContext(Configuration.GetConnectionString("DefaultConnection")));
 		}
     }
 }

@@ -40,7 +40,7 @@ export function addComment(author, comment, postId) {
         }).then((response) => {
             if (response.ok) {
                 dispatch({ type: ADD_COMMENT_SUCCESS });
-                getPost(postId);
+                getPost(postId)(dispatch);
             } else {
                 alert('Ошибка добавления комментария');
                 dispatch({ type: ADD_COMMENT_ERROR, payload: 'Ошибка добавления комментария' });

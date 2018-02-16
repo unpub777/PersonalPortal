@@ -40,6 +40,7 @@ class Comments extends React.Component {
                     comment={this.props.data.comment}
                     changeAuthor={this.props.changeAuthor}
                     changeComment={this.props.changeComment}
+                    postId={this.props.data.post.postId}
                     addComment={this.props.addComment} />
             </div>
         );

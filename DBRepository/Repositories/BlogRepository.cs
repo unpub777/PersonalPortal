@@ -4,18 +4,19 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace DBRepository.Repositories
 {
 	public class BlogRepository : BaseRepository, IBlogRepository
     {
-        public BlogRepository(string connectionString) : base(connectionString) { }
+        public BlogRepository(string connectionString, IRepositoryContextFactory contextFactory) : base(connectionString, contextFactory) { }
 
         public async Task<Page<Post>> GetPosts(int index, int pageSize, string tag = null)
         {
 			var result = new Page<Post>() { CurrentPage = index, PageSize = pageSize };
 
-			using (var context = new RepositoryContextFactory().CreateDbContext(ConnectionString))
+			using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
 				var query = context.Posts.AsQueryable();
 				if (!string.IsNullOrWhiteSpace(tag))
@@ -32,7 +33,7 @@ namespace DBRepository.Repositories
 
 		public async Task<List<string>> GetAllTagNames()
 		{
-			using (var context = new RepositoryContextFactory().CreateDbContext(ConnectionString))
+			using (var context = ContextFactory.CreateDbContext(ConnectionString))
 			{
 				return await context.Tags.Select(t => t.TagName).Distinct().ToListAsync();
 			}
@@ -40,7 +41,7 @@ namespace DBRepository.Repositories
 
 		public async Task<Post> GetPost(int postId)
 		{
-			using (var context = new RepositoryContextFactory().CreateDbContext(ConnectionString))
+			using (var context = ContextFactory.CreateDbContext(ConnectionString))
 			{
 				return await context.Posts.Include(p => p.Tags).Include(p => p.Comments).FirstOrDefaultAsync(p => p.PostId == postId);
 			}
@@ -48,7 +49,7 @@ namespace DBRepository.Repositories
 
 		public async Task AddComment(Comment comment)
 		{
-			using (var context = new RepositoryContextFactory().CreateDbContext(ConnectionString))
+			using (var context = ContextFactory.CreateDbContext(ConnectionString))
 			{
 				context.Comments.Add(comment);
 				await context.SaveChangesAsync();
@@ -57,7 +58,7 @@ namespace DBRepository.Repositories
 
 		public async Task AddPost(Post post)
 		{
-			using (var context = new RepositoryContextFactory().CreateDbContext(ConnectionString))
+			using (var context = ContextFactory.CreateDbContext(ConnectionString))
 			{
 				context.Posts.Add(post);
 				await context.SaveChangesAsync();
