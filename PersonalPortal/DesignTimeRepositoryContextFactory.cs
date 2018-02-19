@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.IO;
 
 namespace PersonalPortal
 {
@@ -9,14 +10,9 @@ namespace PersonalPortal
 	{
 		public RepositoryContext CreateDbContext(string[] args)
 		{
-			var basePath = AppContext.BaseDirectory;
-			var environmentName = Environment.GetEnvironmentVariable("Hosting:Environment");
-
 			var builder = new ConfigurationBuilder()
-				 .SetBasePath(basePath)
-				 .AddJsonFile("appsettings.json")
-				 .AddJsonFile($"appsettings.{environmentName}.json", true)
-				 .AddEnvironmentVariables();
+				 .SetBasePath(Directory.GetCurrentDirectory())
+				 .AddJsonFile("appsettings.json");
 
 			var config = builder.Build();
 			var connectionString = config.GetConnectionString("DefaultConnection");

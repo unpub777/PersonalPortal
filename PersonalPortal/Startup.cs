@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using DBRepository.Interfaces;
 using DBRepository.Repositories;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using DBRepository;
 using AutoMapper;
 using PersonalPortal.Services.Interfaces;
@@ -14,25 +13,21 @@ using PersonalPortal.Services.Implementation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using PersonalPortal.Helpers;
+using System;
 
 namespace PersonalPortal
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
-        }
+		public Startup(IConfiguration configuration)
+		{
+			Configuration = configuration;
+		}
 
-        public IConfigurationRoot Configuration { get; }
+		public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
 			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 					.AddJwtBearer(options =>
@@ -62,7 +57,6 @@ namespace PersonalPortal
 			services.AddMvc();
 			services.AddAutoMapper();
 
-			//services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 			services.AddScoped<IRepositoryContextFactory, RepositoryContextFactory>();
 			services.AddScoped<IBlogRepository>(provider => new BlogRepository(Configuration.GetConnectionString("DefaultConnection"), provider.GetService<IRepositoryContextFactory>()));
 			services.AddScoped<IIdentityRepository>(provider => new IdentityRepository(Configuration.GetConnectionString("DefaultConnection"), provider.GetService<IRepositoryContextFactory>()));
@@ -70,6 +64,8 @@ namespace PersonalPortal
 			services.AddSingleton<IConfiguration>(Configuration);
 			services.AddScoped<IBlogService, BlogService>();
 			services.AddScoped<IIdentityService, IdentityService>();
+
+			return services.BuildServiceProvider();
 		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -90,9 +86,6 @@ namespace PersonalPortal
 					template: "api/{controller}/{action}/{id?}");
 				routes.MapSpaFallbackRoute("spa-fallback", new { controller = "Home", action = "Index" });
 			});
-
-			var factory = app.ApplicationServices.GetService<IRepositoryContextFactory>();
-			DbInitializer.Initialize(factory.CreateDbContext(Configuration.GetConnectionString("DefaultConnection")));
 		}
     }
 }
