@@ -1,4 +1,5 @@
-﻿using DBRepository.Interfaces;
+﻿using DBRepository;
+using DBRepository.Interfaces;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,8 +25,8 @@ namespace PersonalPortal
 			{
 				var services = scope.ServiceProvider;
 
-				var factory = host.Services.GetRequiredService<IRepositoryContextFactory>();
-				factory.CreateDbContext(config.GetConnectionString("DefaultConnection")).Database.Migrate();
+				var factory = services.GetRequiredService<IRepositoryContextFactory>();
+				DbInitializer.Initialize(factory.CreateDbContext(config.GetConnectionString("DefaultConnection")));
 			}
 
 			host.Run();
