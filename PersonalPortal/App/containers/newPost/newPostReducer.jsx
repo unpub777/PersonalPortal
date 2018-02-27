@@ -1,4 +1,4 @@
-﻿import { ADD_POST_SUCCESS, ADD_POST_ERROR, CHANGE_HEADER, CHANGE_BODY, CHANGE_TAGS } from '../constants/newPostConstants.jsx'
+﻿import { ADD_POST_SUCCESS, ADD_POST_ERROR, CHANGE_HEADER, CHANGE_BODY, CHANGE_TAGS } from './newPostConstants.jsx'
 
 const initialState = {
     header: '',

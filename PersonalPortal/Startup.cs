@@ -33,24 +33,15 @@ namespace PersonalPortal
 					.AddJwtBearer(options =>
 					{
 						options.RequireHttpsMetadata = false;
+						options.SaveToken = true;
 						options.TokenValidationParameters = new TokenValidationParameters
 						{
-							// укзывает, будет ли валидироваться издатель при валидации токена
-							ValidateIssuer = true,
-							// строка, представляющая издателя
 							ValidIssuer = AuthOptions.ISSUER,
-
-							// будет ли валидироваться потребитель токена
-							ValidateAudience = true,
-							// установка потребителя токена
 							ValidAudience = AuthOptions.AUDIENCE,
-							// будет ли валидироваться время существования
-							ValidateLifetime = true,
-
-							// установка ключа безопасности
 							IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
-							// валидация ключа безопасности
+							ValidateLifetime = true,
 							ValidateIssuerSigningKey = true,
+							ClockSkew = TimeSpan.Zero
 						};
 					});
 

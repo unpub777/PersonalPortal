@@ -1,4 +1,4 @@
-﻿import { GET_POSTS_SUCCESS, GET_POSTS_ERROR, GET_TAGS_SUCCESS, GET_TAGS_ERROR } from '../constants/blogConstants.jsx'
+﻿import { GET_POSTS_SUCCESS, GET_POSTS_ERROR, GET_TAGS_SUCCESS, GET_TAGS_ERROR } from './blogConstants.jsx'
 import "isomorphic-fetch"
 
 export function getPosts(pageIndex = 0, tag) {

@@ -1,8 +1,8 @@
 ﻿import { combineReducers } from 'redux'
-import blog from './blogReducer.jsx'
-import header from './headerReducer.jsx'
-import comments from './commentsReducer.jsx'
-import newPost from './newPostReducer.jsx'
+import blog from '../containers/blog/blogReducer.jsx'
+import header from '../containers/header/headerReducer.jsx'
+import comments from '../containers/comments/commentsReducer.jsx'
+import newPost from '../containers/newPost/newPostReducer.jsx'
 
 export default combineReducers({
     blog,

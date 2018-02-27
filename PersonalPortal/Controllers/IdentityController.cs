@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
 using System.Text;
+using PersonalPortal.ViewModels;
 
 namespace PersonalPortal.Controllers
 {
@@ -27,16 +28,12 @@ namespace PersonalPortal.Controllers
 
 		[Route("token")]
 		[HttpPost]
-		public async Task Token()
+		public async Task<IActionResult> Token([FromBody]IdentityViewModel model)
 		{
-			var username = Request.Form["username"];
-			var password = Request.Form["password"];
-
-			var identity = await GetIdentity(username, password);
+			var identity = await GetIdentity(model.Username, model.Password);
 			if (identity == null)
 			{
-				Response.StatusCode = 400;
-				return;
+				return Unauthorized();
 			}
 
 			var now = DateTime.UtcNow;
@@ -56,8 +53,7 @@ namespace PersonalPortal.Controllers
 				username = identity.Name
 			};
 
-			Response.ContentType = "application/json";
-			await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
+			return Ok(response);
 		}
 
 		private async Task<ClaimsIdentity> GetIdentity(string userName, string password)

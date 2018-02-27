@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
-import Post from '../components/post.jsx';
-import Comment from '../components/comment.jsx';
-import NewCommentForm from '../components/newCommentForm.jsx';
-import { changeAuthor, changeComment, getPost, addComment } from '../actions/commentsActions.jsx'
+import Post from '../../components/post.jsx';
+import Comment from './components/comment.jsx';
+import NewCommentForm from './components/newCommentForm.jsx';
+import { changeAuthor, changeComment, getPost, addComment } from './commentsActions.jsx'
 
 class Comments extends React.Component {
     constructor(props) {

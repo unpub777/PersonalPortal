@@ -1,5 +1,5 @@
-﻿import { LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SHOW_LOGIN_FORM, INPUT_LOGIN, INPUT_PASSWORD } from '../constants/headerConstants.jsx'
-import AuthHelper from '../Utils/authHelper'
+﻿import { LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SHOW_LOGIN_FORM, INPUT_LOGIN, INPUT_PASSWORD } from './headerConstants.jsx'
+import AuthHelper from '../../Utils/authHelper'
 import "isomorphic-fetch"
 
 export function showLoginForm(show) {
@@ -33,21 +33,17 @@ export function logout() {
 export function login(userName, password) {
     return (dispatch) => {
         if (userName && password) {
-            var loginData = {
+            var data = {
                 username: userName,
                 password: password
             };
 
-            const searchParams = Object.keys(loginData).map((key) => {
-                return encodeURIComponent(key) + '=' + encodeURIComponent(loginData[key]);
-            }).join('&');
-
             fetch(constants.token, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    'Content-Type': 'application/json; charset=utf-8'
                 },
-                body: searchParams
+                body: JSON.stringify(data)
             }).then((response) => {
                 if (response.ok) {
                     return response.json();

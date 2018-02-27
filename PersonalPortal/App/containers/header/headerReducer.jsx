@@ -1,5 +1,5 @@
-﻿import { LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SHOW_LOGIN_FORM, INPUT_LOGIN, INPUT_PASSWORD } from '../constants/headerConstants.jsx'
-import AuthHelper from '../Utils/authHelper'
+﻿import { LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SHOW_LOGIN_FORM, INPUT_LOGIN, INPUT_PASSWORD } from './headerConstants.jsx'
+import AuthHelper from '../../Utils/authHelper'
 
 const initialState = {
     isLogged: AuthHelper.isLogged(),

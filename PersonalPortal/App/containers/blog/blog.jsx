@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
 import { Link } from 'react-router-dom';
-import Post from '../components/post.jsx';
-import TagsCloud from '../components/tagCloud.jsx';
-import { getPosts, getTags } from '../actions/blogActions.jsx'
+import Post from '../../components/post.jsx';
+import TagsCloud from './components/tagCloud.jsx';
+import { getPosts, getTags } from './blogActions.jsx'
 import "isomorphic-fetch";
 
 class Blog extends React.Component {
@@ -38,7 +38,6 @@ class Blog extends React.Component {
     }
 
     render() {
-        const currentIndex = this.props.posts.currentPage;
         const total = this.props.posts.totalPages;
         const pageSize = this.props.posts.pageSize;
         const pageNumbers = [];

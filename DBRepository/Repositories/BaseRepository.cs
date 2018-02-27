@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DBRepository.Repositories
 {
-    public class BaseRepository
+    public abstract class BaseRepository
     {
         protected string ConnectionString { get; }
 		protected IRepositoryContextFactory ContextFactory { get; }

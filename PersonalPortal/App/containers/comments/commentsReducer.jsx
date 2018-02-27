@@ -1,4 +1,4 @@
-﻿import { GET_POST_SUCCESS, GET_POST_ERROR, ADD_COMMENT_SUCCESS, ADD_COMMENT_ERROR, CHANGE_COMMENT_AUTHOR, CHANGE_COMMENT_TEXT } from '../constants/commentsConstants.jsx'
+﻿import { GET_POST_SUCCESS, GET_POST_ERROR, ADD_COMMENT_SUCCESS, ADD_COMMENT_ERROR, CHANGE_COMMENT_AUTHOR, CHANGE_COMMENT_TEXT } from './commentsConstants.jsx'
 
 const initialState = {
     post: { tags: [], comments: [] },

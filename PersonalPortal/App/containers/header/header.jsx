@@ -2,8 +2,8 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import LoginForm from '../components/loginForm.jsx';
-import { login, logout, showLoginForm, inputLogin, inputPassword } from '../actions/headerActions.jsx'
+import LoginForm from '../../components/loginForm.jsx';
+import { login, logout, showLoginForm, inputLogin, inputPassword } from './headerActions.jsx'
 
 class Header extends React.Component {
     render() {

@@ -2,7 +2,7 @@
 import ReactDOM from 'react-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { addPost, changeHeader, changeBody, changeTags } from '../actions/newPostActions.jsx'
+import { addPost, changeHeader, changeBody, changeTags } from './newPostActions.jsx'
 
 class NewPost extends React.Component {
 
