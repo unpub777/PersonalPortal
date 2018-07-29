@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import App from './containers/app.jsx'
 import configureStore from './store/configureStore.jsx'
 
-const store = configureStore()
+const store = configureStore();
 
 render(
     <Provider store={store}>

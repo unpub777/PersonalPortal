@@ -6,18 +6,29 @@ import queryString from 'query-string';
 import { Link } from 'react-router-dom';
 import Post from '../../components/post.jsx';
 import TagsCloud from './components/tagCloud.jsx';
-import { getPosts, getTags } from './blogActions.jsx'
+import { getPosts, getTags, deletePost } from './blogActions.jsx'
 import "isomorphic-fetch";
 
 class Blog extends React.Component {
     constructor(props) {
         super(props);
         this.state = { query: location.search };
+        this.deletePost = this.deletePost.bind(this);
     }
 
     componentDidMount() {
-        this.getPosts()
+        this.getPosts();
         this.props.getTags();
+    }
+
+    deletePost(postId) {
+        let pageIndex; let tag;
+        const parsed = queryString.parse(location.search);
+        if (parsed) {
+            pageIndex = parsed['pageIndex'];
+            tag = parsed['tag'];
+        }
+        this.props.deletePost(postId, pageIndex, tag);
     }
 
     getPosts() {
@@ -60,7 +71,7 @@ class Blog extends React.Component {
 
         let posts = this.props.posts.records.map(item => {
             return (
-                <Post key={item.postId} data={item} isFull={false} />
+                <Post key={item.postId} data={item} isFull={false} isLogged={this.props.isLogged} deletePost={this.deletePost} />
             );
         });
 
@@ -86,14 +97,16 @@ let mapProps = (state) => {
     return {
         posts: state.blog.data,
         tags: state.blog.tags,
-        error: state.blog.error
+        error: state.blog.error,
+        isLogged: state.header.isLogged
     }
 }
 
 let mapDispatch = (dispatch) => {
     return {
         getPosts: bindActionCreators(getPosts, dispatch),
-        getTags: bindActionCreators(getTags, dispatch)
+        getTags: bindActionCreators(getTags, dispatch),
+        deletePost: bindActionCreators(deletePost, dispatch)
     }
 }
 

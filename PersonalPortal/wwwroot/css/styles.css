@@ -116,20 +116,27 @@ fieldset {
 
     .post .tagsBlock {
         display: inline-block;
-        width: 70%;
         text-align: left;
     }
 
-    .post .commentsBlock {
+    .post .actionBlock {
         display: inline-block;
-        width: 30%;
-        text-align: right;
+        float: right;
     }
+        .post .actionBlock .commentsBlock {
+            display: inline-block;
+        }
+        .post .actionBlock .deleteBlock {
+            display: inline-block;
+            margin-right: 10px;
+        }
 
 .link {
     margin-right: 5px;
     display: inline-block;
     cursor: pointer;
+    color: -webkit-link;
+    text-decoration: underline;
 }
 
 .commentsList {

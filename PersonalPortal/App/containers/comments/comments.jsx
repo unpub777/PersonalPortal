@@ -6,11 +6,12 @@ import queryString from 'query-string';
 import Post from '../../components/post.jsx';
 import Comment from './components/comment.jsx';
 import NewCommentForm from './components/newCommentForm.jsx';
-import { changeAuthor, changeComment, getPost, addComment } from './commentsActions.jsx'
+import { changeAuthor, changeComment, getPost, addComment, deletePost } from './commentsActions.jsx'
 
 class Comments extends React.Component {
     constructor(props) {
-        super(props);
+		super(props);
+	    this.deletePost = this.deletePost.bind(this);
     }
 
     componentDidMount() {
@@ -18,7 +19,11 @@ class Comments extends React.Component {
         if (parsed) {
             this.props.getPost(parsed['postId']);
         }
-    }
+	}
+
+	deletePost(postId) {
+		this.props.deletePost(postId, this.props.history);
+	}
 
     render() {
         let comments = this.props.data.post.comments.map(item => {
@@ -29,7 +34,7 @@ class Comments extends React.Component {
 
         return (
             <div id="post">
-                <Post data={this.props.data.post} isFull={true} />
+				<Post data={this.props.data.post} isLogged={this.props.isLogged} deletePost={this.deletePost} isFull={true} />
                 <h3>Комментарии <span className="itemCount">{this.props.data.post.comments.length}</span></h3>
                 <div className="commentsList">
                     {comments}
@@ -49,7 +54,8 @@ class Comments extends React.Component {
 
 let mapProps = (state) => {
     return {
-        data: state.comments
+		data: state.comments,
+		isLogged: state.header.isLogged
     }
 }
 
@@ -58,7 +64,8 @@ let mapDispatch = (dispatch) => {
         changeAuthor: bindActionCreators(changeAuthor, dispatch),
         changeComment: bindActionCreators(changeComment, dispatch),
         getPost: bindActionCreators(getPost, dispatch),
-        addComment: bindActionCreators(addComment, dispatch)
+		addComment: bindActionCreators(addComment, dispatch),
+		deletePost: bindActionCreators(deletePost, dispatch)
     }
 }
 

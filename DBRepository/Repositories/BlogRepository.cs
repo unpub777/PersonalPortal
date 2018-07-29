@@ -64,5 +64,15 @@ namespace DBRepository.Repositories
 				await context.SaveChangesAsync();
 			}
 		}
+
+	    public async Task DeletePost(int postId)
+	    {
+		    using (var context = ContextFactory.CreateDbContext(ConnectionString))
+		    {
+			    var post = new Post() { PostId = postId };
+			    context.Posts.Remove(post);
+			    await context.SaveChangesAsync();
+		    }
+	    }
 	}
 }

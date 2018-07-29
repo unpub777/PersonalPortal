@@ -47,6 +47,14 @@ namespace PersonalPortal.Controllers
 			await _blogService.AddPost(request);
 		}
 
+	    [Authorize]
+	    [Route("post")]
+	    [HttpDelete]
+	    public async Task DeletePost(int postId)
+	    {
+		    await _blogService.DeletePost(postId);
+	    }
+
 		[Route("tags")]
 		[HttpGet]
 		public async Task<List<string>> GetTags()

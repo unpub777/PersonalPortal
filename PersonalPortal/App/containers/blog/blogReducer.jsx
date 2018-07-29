@@ -1,4 +1,4 @@
-﻿import { GET_POSTS_SUCCESS, GET_POSTS_ERROR, GET_TAGS_SUCCESS, GET_TAGS_ERROR } from './blogConstants.jsx'
+﻿import { GET_POSTS_SUCCESS, GET_POSTS_ERROR, GET_TAGS_SUCCESS, GET_TAGS_ERROR, DELETE_POST_SUCCESS, DELETE_POST_ERROR } from './blogConstants.jsx'
 
 const initialState = {
     data: { currentPage: 0, totalPages: 0, pageSize: 0, records: [] },
@@ -18,7 +18,13 @@ export default function blog(state = initialState, action) {
             return {...state, tags: action.payload, error: '' }
 
         case GET_TAGS_ERROR:
-            return {...state, error: action.payload }
+            return { ...state, error: action.payload }
+
+        case DELETE_POST_SUCCESS:
+            return { ...state }
+
+        case DELETE_POST_ERROR:
+            return { ...state, error: action.payload }
 
         default:
             return state;

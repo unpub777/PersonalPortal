@@ -25,7 +25,7 @@ export default function comments(state = initialState, action) {
             return { ...state, author: action.payload }
 
         case CHANGE_COMMENT_TEXT:
-            return { ...state, comment: action.payload }
+			return { ...state, comment: action.payload }
 
         default:
             return state;

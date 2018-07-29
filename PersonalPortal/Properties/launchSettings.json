@@ -21,10 +21,9 @@
       }
     },
     "PersonalPortal": {
-      "commandName": "IIS",
-      "workingDirectory": "C:\\work\\PersonalPortal\\PersonalPortal",
+      "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost/PersonalPortal",
+      "launchUrl": "http://localhost:50308",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
