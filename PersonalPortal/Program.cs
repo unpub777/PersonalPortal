@@ -7,12 +7,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace PersonalPortal
 {
 	public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
 			var host = BuildWebHost(args);
 
@@ -26,7 +27,10 @@ namespace PersonalPortal
 				var services = scope.ServiceProvider;
 
 				var factory = services.GetRequiredService<IRepositoryContextFactory>();
-				DbInitializer.Initialize(factory.CreateDbContext(config.GetConnectionString("DefaultConnection")));
+				using (var context = factory.CreateDbContext(config.GetConnectionString("DefaultConnection")))
+				{
+					await DbInitializer.Initialize(context);
+				}
 			}
 
 			host.Run();
