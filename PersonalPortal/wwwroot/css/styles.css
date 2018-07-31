@@ -165,6 +165,10 @@ fieldset {
     padding: 10px;
 }
 
+	.header .action {
+		margin-top: -10px;
+	}
+
     .header a {
         color: #FFFFFF;
     }

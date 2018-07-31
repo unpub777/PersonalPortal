@@ -39,6 +39,14 @@ namespace PersonalPortal.Controllers
 			await _blogService.AddComment(request);
 		}
 
+	    [Authorize]
+	    [Route("comment")]
+	    [HttpDelete]
+	    public async Task DeleteComment(int commentId)
+	    {
+		    await _blogService.DeleteComment(commentId);
+	    }
+
 		[Authorize]
 		[Route("post")]
 		[HttpPost]

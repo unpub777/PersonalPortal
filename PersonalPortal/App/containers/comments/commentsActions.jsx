@@ -18,10 +18,10 @@ export function changeComment(comment) {
 
 export function getPost(postId) {
     return (dispatch) => {
-        fetch(constants.post + '?postId=' + postId)
+		fetch(window.constants.post + '?postId=' + postId)
             .then((response) => {
-                return response.json()
-            }).then((data) => {
+				return response.json();
+			}).then((data) => {
 		        dispatch({ type: GET_POST_SUCCESS, payload: data });
 	        }).catch((ex) => {
                 alert(ex);
@@ -33,7 +33,7 @@ export function getPost(postId) {
 export function addComment(author, comment, postId) {
 	return (dispatch) => {
 		if (author && comment) {
-			fetch(constants.addComment,
+			fetch(window.constants.comment,
 				{
 					method: 'POST',
 					headers: {
@@ -56,6 +56,27 @@ export function addComment(author, comment, postId) {
 			alert('Необходимо заполнить имя автора и тело комментария');
 			dispatch({ type: ADD_COMMENT_ERROR, payload: 'Ошибка добавления комментария' });
 		}
+	}
+}
+
+export function deleteComment(commentId, postId) {
+	return (dispatch) => {
+		let token = AuthHelper.getToken();
+		fetch(window.constants.comment + '?commentId=' + commentId, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+			}
+		}).then((response) => {
+			if (response.ok) {
+				getPost(postId)(dispatch);
+			} else {
+				alert('Ошибка удаления комментария');
+			}
+		}).catch((ex) => {
+			alert(ex);
+		});
 	}
 }
 

@@ -74,5 +74,15 @@ namespace DBRepository.Repositories
 			    await context.SaveChangesAsync();
 		    }
 	    }
+
+	    public async Task DeleteComment(int commentId)
+	    {
+		    using (var context = ContextFactory.CreateDbContext(ConnectionString))
+		    {
+			    var coomment = new Comment() { CommentId = commentId };
+			    context.Comments.Remove(coomment);
+			    await context.SaveChangesAsync();
+		    }
+	    }
 	}
 }

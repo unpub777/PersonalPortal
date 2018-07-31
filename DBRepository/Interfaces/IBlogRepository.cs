@@ -12,5 +12,7 @@ namespace DBRepository.Interfaces
 		Task<List<string>> GetAllTagNames();
 		Task AddPost(Post post);
 	    Task DeletePost(int postId);
+	    Task DeleteComment(int commentId);
+
     }
 }

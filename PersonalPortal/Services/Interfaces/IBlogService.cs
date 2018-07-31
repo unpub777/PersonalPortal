@@ -12,6 +12,7 @@ namespace PersonalPortal.Services.Interfaces
 		Task AddComment(AddCommentRequest request);
 		Task AddPost(AddPostRequest request);
 	    Task DeletePost(int postId);
+	    Task DeleteComment(int commentId);
 		Task<List<string>> GetTags();
 	}
 }

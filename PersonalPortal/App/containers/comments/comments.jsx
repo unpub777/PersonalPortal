@@ -6,12 +6,13 @@ import queryString from 'query-string';
 import Post from '../../components/post.jsx';
 import Comment from './components/comment.jsx';
 import NewCommentForm from './components/newCommentForm.jsx';
-import { changeAuthor, changeComment, getPost, addComment, deletePost } from './commentsActions.jsx'
+import { changeAuthor, changeComment, getPost, addComment, deletePost, deleteComment } from './commentsActions.jsx'
 
 class Comments extends React.Component {
     constructor(props) {
 		super(props);
-	    this.deletePost = this.deletePost.bind(this);
+		this.deletePost = this.deletePost.bind(this);
+		this.deleteComment = this.deleteComment.bind(this);
     }
 
     componentDidMount() {
@@ -21,6 +22,10 @@ class Comments extends React.Component {
         }
 	}
 
+	deleteComment(commentId) {
+		this.props.deleteComment(commentId, this.props.data.post.postId);
+	}
+
 	deletePost(postId) {
 		this.props.deletePost(postId, this.props.history);
 	}
@@ -28,7 +33,7 @@ class Comments extends React.Component {
     render() {
         let comments = this.props.data.post.comments.map(item => {
             return (
-                <Comment key={item.commentId} author={item.author} createDate={item.createDate} body={item.body} />
+				<Comment key={item.commentId} data={item} isLogged={this.props.isLogged} deleteComment={this.deleteComment} />
             );
         });
 
@@ -65,7 +70,8 @@ let mapDispatch = (dispatch) => {
         changeComment: bindActionCreators(changeComment, dispatch),
         getPost: bindActionCreators(getPost, dispatch),
 		addComment: bindActionCreators(addComment, dispatch),
-		deletePost: bindActionCreators(deletePost, dispatch)
+		deletePost: bindActionCreators(deletePost, dispatch),
+		deleteComment: bindActionCreators(deleteComment, dispatch)
     }
 }
 

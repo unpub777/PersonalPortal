@@ -10,8 +10,8 @@ export function getPosts(pageIndex = 0, tag) {
         }
         fetch(window.constants.page + queryTrailer)
             .then((response) => {
-                return response.json()
-            }).then((data) => {
+		        return response.json();
+	        }).then((data) => {
                 dispatch({ type: GET_POSTS_SUCCESS, payload: data });
             }).catch((ex) => {
                 dispatch({ type: GET_POSTS_ERROR, payload: ex });

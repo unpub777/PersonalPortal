@@ -45,6 +45,11 @@ namespace PersonalPortal.Services.Implementation
 			await _repository.DeletePost(postId);
 		}
 
+		public async Task DeleteComment(int commentId)
+		{
+			await _repository.DeleteComment(commentId);
+		}
+
 		public async Task<Page<PostLiteViewModel>> GetPosts(int pageIndex, string tag)
 		{
 			var pageSize = _config.GetValue<int>("pageSize");
