@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <LangVersion>7.2</LangVersion>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,8 +33,5 @@
     <ProjectReference Include="..\DBRepository\DBRepository.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="node node_modules/webpack/bin/webpack.js" />
-  </Target>
 
 </Project>

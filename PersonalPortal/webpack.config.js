@@ -13,7 +13,8 @@ module.exports = {
     ], 
     devtool: "source-map",
     output: {
-        filename: "bundle.js",
+		filename: "bundle.js",
+		publicPath: 'assets/',
         path: path.resolve(__dirname, bundleFolder)
     },
     module: {

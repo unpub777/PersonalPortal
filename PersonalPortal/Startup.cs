@@ -63,6 +63,11 @@ namespace PersonalPortal
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+	        if (env.IsDevelopment())
+	        {
+		        app.UseWebpackDevMiddleware();
+	        }
+
 			app.UseAuthentication();
 			app.UseStaticFiles();
 			app.UseMvc(routes =>
